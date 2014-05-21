@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.CriarConta"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/Images/landscape.png"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Canvas Grid.RowSpan="2" Background="#BF0E6400"/>
+
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="Criar conta" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,40,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <ScrollViewer>
+                <StackPanel Margin="10,0">
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Email</TextBlock>
+                    <TextBox InputScope="EmailSmtpAddress"></TextBox>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Usuário</TextBlock>
+                    <TextBox></TextBox>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Senha</TextBlock>
+                    <PasswordBox></PasswordBox>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Confirmação de Senha</TextBlock>
+                    <PasswordBox></PasswordBox>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <CheckBox IsChecked="true" FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Lembrar-me</CheckBox>
+                        <Button Grid.Column="1" HorizontalAlignment="Stretch">Criar conta</Button>
+
+                    </Grid>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

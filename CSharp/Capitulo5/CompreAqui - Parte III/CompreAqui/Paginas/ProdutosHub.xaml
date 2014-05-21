@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.ProdutosHub"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Hub Header="CompreAqui">
+            <Hub.Background>
+                <ImageBrush ImageSource="/Assets/Images/Background.jpg"/>
+            </Hub.Background>
+
+            <HubSection Header="classificações">
+
+            </HubSection>
+
+            <HubSection Header="promoção">
+
+            </HubSection>
+
+            <HubSection Header="produtos">
+
+            </HubSection>
+
+        </Hub>
+        
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar Opacity="0.5">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="pesquisar" >
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/CommandBar/feature.search.png" ></BitmapIcon>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+            
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="sua conta" Click="btnSuaConta_Click"/>
+            </CommandBar.SecondaryCommands>
+            
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

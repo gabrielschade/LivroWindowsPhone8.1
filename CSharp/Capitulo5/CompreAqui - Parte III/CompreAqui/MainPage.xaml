@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="CompreAqui.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/Images/landscape.png" Stretch="UniformToFill"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="240"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140"/>
+                    <RowDefinition Height="150"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="1" Source="/Assets/Images/Icon.png" Opacity="0.7"></Image>
+                <TextBlock Grid.Row="2" Text="CompreAqui" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}"/>
+
+            </Grid>
+
+            <StackPanel Grid.Row="1" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                <Button x:Name="btnAutenticar" Style="{StaticResource BotaoSemBorda}" Background="#B2C80000" HorizontalAlignment="Stretch" Tapped="btnAutenticar_Tapped">Entrar com uma conta</Button>
+                <Button x:Name="btnEntrarSemConta" Style="{StaticResource BotaoSemBorda}" Background="#B20000C8" HorizontalAlignment="Stretch" Tapped="btnEntrar_Tapped">Entrar sem uma conta</Button>
+                <Button x:Name="btnCriarConta" Style="{StaticResource BotaoSemBorda}" Background="#BF0E6400." HorizontalAlignment="Stretch" Tapped="btnCriarConta_Tapped">Criar uma conta</Button >
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
