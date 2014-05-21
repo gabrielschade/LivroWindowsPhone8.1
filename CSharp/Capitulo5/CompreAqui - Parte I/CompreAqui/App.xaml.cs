@@ -53,7 +53,7 @@ namespace CompreAqui
             }
 #endif
 
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -103,15 +103,7 @@ namespace CompreAqui
             Window.Current.Activate();
         }
 
-        private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.CanGoBack)
-            {
-                rootFrame.GoBack();
-                e.Handled = true;
-            }
-        }
+
 
         /// <summary>
         /// Restores the content transitions after the app has launched.
