@@ -1,4 +1,5 @@
-﻿using CompreAqui.Common;
+﻿using CompreAqui.Auxiliar;
+using CompreAqui.Common;
 using CompreAqui.Modelos;
 using CompreAqui.ViewModels;
 using System;
@@ -43,14 +44,14 @@ namespace CompreAqui.Paginas
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
+
         }
         private void btnSuaConta_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SuaConta));
         }
 
-        public void VincularDados()
+        public async void VincularDados()
         {
             listaCategorias.ItemsSource = (from produtos in Loja.Dados.Produtos
                                            select new CategoriaVM
@@ -119,6 +120,7 @@ namespace CompreAqui.Paginas
         private void ListaProdutos_Loaded(object sender, RoutedEventArgs e)
         {
             listaProdutos = sender as ListView;
+
             CarregarDadosAsync();
         }
 
@@ -131,9 +133,65 @@ namespace CompreAqui.Paginas
         {
             TextBlock categoriaClicada = sender as TextBlock;
 
-            int categoriaId = Convert.ToInt32(categoriaClicada.Tag);
+            Pesquisa pesquisa = new Pesquisa();
+            pesquisa.CategoriaId = Convert.ToInt32(categoriaClicada.Tag);
 
-            this.Frame.Navigate(typeof(Produtos), categoriaId);
+            this.Frame.Navigate(typeof(Produtos), pesquisa);
         }
+
+        private void Produto_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Grid componentePressionado = sender as Grid;
+            if (componentePressionado != null)
+            {
+                int id = Convert.ToInt32(componentePressionado.Tag);
+
+                this.Frame.Navigate(typeof(ProdutoDetalhe), id);
+            }
+        }
+
+        private void CampoPesquisa_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                ExecutarPesquisa();
+            }
+        }
+
+        private void ExecutarPesquisa()
+        {
+            Pesquisa pesquisa = new Pesquisa();
+            pesquisa.DescricaoProduto = CampoPesquisa.Text;
+
+            this.Frame.Navigate(typeof(Produtos), pesquisa);
+            DesaparecerPainelPesquisa();
+        }
+
+        private void CampoPesquisa_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (btnAppBar.FocusState == Windows.UI.Xaml.FocusState.Unfocused)
+                DesaparecerPainelPesquisa();
+        }
+
+        private void DesaparecerPainelPesquisa()
+        {
+            CampoPesquisa.Text = string.Empty;
+            PainelPesquisa.Visibility = Visibility.Collapsed;
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (PainelPesquisa.Visibility == Visibility.Collapsed)
+            {
+                PainelPesquisa.Visibility = Visibility.Visible;
+                CampoPesquisa.Focus(Windows.UI.Xaml.FocusState.Programmatic);
+            }
+            else
+            {
+                ExecutarPesquisa();
+            }
+        }
+
+
     }
 }
