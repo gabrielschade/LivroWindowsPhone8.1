@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.SuaConta"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/Images/Background.jpg"/>
+        </Grid.Background>
+
+        <Pivot Title="SUA CONTA" ContinuumNavigationTransitionInfo.IsEntranceElement="True">
+
+            <PivotItem Header="Informações">
+                <StackPanel>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}" Text="Usuário" Margin="0,10,0,0"/>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" Text="{Binding Nome}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}" Text="Email" Margin="0,10,0,0"/>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" Text="{Binding Email}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+                </StackPanel>
+            </PivotItem>
+            
+            <PivotItem Header="Senha">
+                <StackPanel Margin="10,0">
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Senha atual</TextBlock>
+                    <PasswordBox Password="{Binding Path=SenhaAntesAlteracao,Mode=TwoWay}"/>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Nova senha</TextBlock>
+                        <PasswordBox Password="{Binding Path=Senha,Mode=TwoWay}"/>
+                    <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Confirmação de nova senha</TextBlock>
+                    <PasswordBox Password="{Binding Path=ConfirmacaoSenha,Mode=TwoWay}"/>
+                    <Button HorizontalAlignment="Stretch" Tapped="Button_Tapped">Alterar Senha</Button>
+                </StackPanel>
+            </PivotItem>
+
+            <PivotItem Header="Entrega">
+                <Grid/>
+            </PivotItem>
+
+        </Pivot>
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    Label="sair"
+                    Click="AppBarButton_Click"
+                    >
+                    
+                    <AppBarButton.Icon>
+                        <BitmapIcon UriSource="ms-appx:///Assets/CommandBar/back.png"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
