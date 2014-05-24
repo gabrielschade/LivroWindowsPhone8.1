@@ -1,0 +1,119 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.Produtos"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:CompreAqui.Converter"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="None" ImageSource="/Assets/Images/Background.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="produtos" Style="{ThemeResource HeaderTextBlockStyle}" x:Name="Titulo" ContinuumNavigationTransitionInfo.IsEntranceElement="True" />
+        </StackPanel>
+
+        
+        
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10">
+            <ScrollViewer>
+                <StackPanel>
+                <TextBlock x:Name="CampoMensagem" Text="Não foi encontrado nenhum produto com o filtro inserido" Visibility="Collapsed" TextWrapping="Wrap" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" Margin="0,20"/>
+                    <ListView Loaded="ListaProdutos_Loaded">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="150" VerticalAlignment="Top" Margin="0,5" Tag="{Binding Id}" Tapped="Grid_Tapped">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Background="White">
+                                        <Grid.Resources>
+                                            <converter:ImageSourceConverter x:Key="converter"/>
+                                        </Grid.Resources>
+                                        <Image Source="{Binding Path=Icone,Converter={StaticResource converter}}" Height="75" />
+                                    </Grid>
+                                    <StackPanel Grid.Column="1" Margin="10">
+                                        <TextBlock Text="{Binding Path=Descricao}" FontSize="{ThemeResource TextStyleExtraLargeFontSize}" TextWrapping="Wrap"/>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="por: " VerticalAlignment="Center"/>
+                                            <TextBlock Text="{Binding Path=PrecoAPagar}" FontSize="24" VerticalAlignment="Center"/>
+                                            <TextBlock Text=" R$" FontSize="24" VerticalAlignment="Center"/>
+                                            <TextBlock Text="Avaliação média: "  VerticalAlignment="Center" Margin="10,0,0,0"/>
+                                            <TextBlock Text="{Binding Path=AvaliacaoMedia}" FontSize="24" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </StackPanel>
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        
+        <Grid x:Name="pnlCarregando" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Grid.Row="1" Background="#7F000000">
+                <TextBlock Margin="20" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" HorizontalAlignment="Center">Carregando dados...</TextBlock>
+                <ProgressRing IsActive="True" Background="{x:Null}" />
+            </StackPanel>
+
+        </Grid>
+        
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    Label="fixar"
+                    Click="Fixar_Click"
+                    Icon="Pin">
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+            
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    Label="ir para página inicial"
+                    Click="AppBarButton_Click">
+                    
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+            
+        </CommandBar>
+    </Page.BottomAppBar>
+    
+</Page>
