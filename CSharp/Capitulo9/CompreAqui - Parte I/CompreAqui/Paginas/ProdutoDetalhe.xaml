@@ -1,0 +1,129 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.ProdutoDetalhe"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converter="using:CompreAqui.Converter"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="None" ImageSource="/Assets/Images/Background.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="8,17,0,28">
+            <TextBlock x:Name="txtTitulo" Text="{Binding Path=Descricao}" TextWrapping="Wrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="0" ContinuumNavigationTransitionInfo.IsEntranceElement="True"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="10,0">
+            <Grid x:Name="pnlPrincipal" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="230"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Background="White">
+                    <Grid.Resources>
+                        <converter:ImageSourceConverter x:Key="converter"/>
+                    </Grid.Resources>
+                    <Image x:Name="Image" Source="{Binding Path=Icone,Converter={StaticResource converter}}" Height="140" />
+                </Grid>
+
+                <StackPanel Grid.Column="1" Margin="10">
+                    <StackPanel.Resources>
+                        <converter:VisibilityConverter x:Key="converter"/>
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding Path=PrecoPromocao, Converter={StaticResource converter}}">
+                        <TextBlock Text="de:" FontSize="{ThemeResource TextStyleExtraLargeFontSize}" Margin="5,0"/>
+                        <TextBlock Text="{Binding Preco}" FontSize="{ThemeResource TextStyleExtraLargeFontSize}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="por:" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" Margin="5,0"/>
+                        <TextBlock Text="{Binding PrecoAPagar}" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,30">
+                        <TextBlock Text="Avaliação:" FontSize="{ThemeResource TextStyleExtraLargeFontSize}" Margin="5,0"/>
+                        <TextBlock Text="{Binding AvaliacaoMedia}" FontSize="{ThemeResource TextStyleExtraLargeFontSize}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10">
+                    <TextBlock Text="Categoria:" FontSize="{ThemeResource TextStyleExtraLargeFontSize}" Margin="0"/>
+                    <TextBlock Text="{Binding CategoriaDescricao}" FontSize="{ThemeResource TextStyleExtraLargeFontSize}"/>
+                </StackPanel>
+
+                <TextBlock Text="{Binding DescricaoDetalhada}" FontSize="{ThemeResource TextStyleLargeFontSize}" Grid.Row="3" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+
+            </Grid>
+        </ScrollViewer>
+        
+        <Grid x:Name="pnlCarregando" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Grid.Row="1" Background="#7F000000">
+                <TextBlock Margin="20" FontSize="{ThemeResource TextStyleExtraExtraLargeFontSize}" HorizontalAlignment="Center">Carregando dados...</TextBlock>
+                <ProgressRing IsActive="True" Background="{x:Null}" />
+            </StackPanel>
+
+        </Grid>
+        
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton
+                    Label="fixar"
+                    Click="Fixar_Click"
+                    Icon="Pin">
+                </AppBarButton>
+                <AppBarButton
+                    Label="compartilhe"
+                    Click="Compartilhar_Click"
+                    Icon="ReShare">
+                </AppBarButton>
+                <AppBarButton
+                    Label="comprar"
+                    Click="Comprar_Click"
+                    Icon="Accept">
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton
+                    Label="ir para página inicial"
+                    Click="AppBarButton_Click">
+
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

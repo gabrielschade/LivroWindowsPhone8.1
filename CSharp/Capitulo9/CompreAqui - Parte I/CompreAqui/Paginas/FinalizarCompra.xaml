@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="CompreAqui.Paginas.FinalizarCompra"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CompreAqui.Paginas"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Stretch="None" ImageSource="/Assets/Images/Background.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel Grid.Row="0" Margin="10,17,0,28">
+            <TextBlock Text="entrega" TextWrapping="Wrap" Style="{StaticResource HeaderTextBlockStyle}" Margin="0" ContinuumNavigationTransitionInfo.IsEntranceElement="True"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="10">
+            <StackPanel>
+                <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Logradouro</TextBlock>
+                <TextBox x:Name="Logradouro"/>
+                <TextBlock FontSize="{ThemeResource TextStyleExtraLargeFontSize}">Cidade</TextBlock>
+                <TextBox x:Name="Cidade"/>
+                <Button HorizontalAlignment="Stretch" Tapped="AdicionarEndereco_Tapped">Adicionar Endereço</Button>
+
+
+                <maps:MapControl x:Name="Mapa" Height="400" LandmarksVisible="True" PedestrianFeaturesVisible="True" TrafficFlowVisible="True" >
+                    <StackPanel Margin="10">
+                        <Button Height="90" FontSize="32" Tapped="AumentarZoom_Tapped">+</Button>
+                        <Button Height="90" FontSize="32" Tapped="DiminuirZoom_Tapped">-</Button>
+                    </StackPanel>
+                </maps:MapControl>
+
+                <Button HorizontalAlignment="Stretch" Tapped="FinalizarCompra_Tapped">Finalizar Compra</Button>
+
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

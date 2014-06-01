@@ -36,9 +36,6 @@
                 </StackPanel>
             </PivotItem>
 
-            <PivotItem Header="Entrega">
-                <Grid/>
-            </PivotItem>
 
         </Pivot>
     </Grid>
